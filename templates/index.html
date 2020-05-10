@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHURN MODEL</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+    <div class = 'login'>
+        <h1>Predict Customer Churn </h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <table>
+                <tr>
+                    <td>
+                        CustomerID:
+                    </td>
+                    <td>
+                        <label for="customerID">
+                            <input name="customerID" placeholder="CustID" type="text">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tenure:
+                    </td>
+                    <td>
+                        <label for="tenure">
+                            <input type="number" name="tenure" placeholder="Tenure">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Phone Service:
+                    </td>
+                    <td>
+                        <label for="PhoneService"></label>
+                        <select id="PhoneService" name="PhoneService">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Contract:
+                    </td>
+                    <td>
+                        <label for="Contract"></label>
+                        <select id="Contract" name="Contract">
+                        <option value="Month-to-month">Month-to-month</option>
+                        <option value="One year">One year</option>
+                        <option value="Two year">Two year</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Paperless Billing:
+                    </td>
+                    <td>
+                        <label for="PaperlessBilling"></label>
+                        <select id="PaperlessBilling" name="PaperlessBilling">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Payment Method:
+                    </td>
+                    <td>
+                        <label for="radio"></label>
+                        <select id="radio" name="PaymentMethod">
+                        <option value="Electronic check">Electronic check</option>
+                        <option value="Mailed check">Mailed check</option>
+                        <option value="Bank transfer (automatic)">Bank Transfer</option>
+                        <option value="Credit card (automatic)">Credit card</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Monthly Charges:
+                    </td>
+                    <td>
+                        <label for="MonthlyCharges">
+                            <input type="number" name="MonthlyCharges" placeholder="Charges">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total Charges:
+                    </td>
+                    <td>
+                        <label for="TotalCharges">
+                            <input type="number" name="TotalCharges" placeholder="Charges">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Gender:
+                    </td>
+                    <td>
+                        <label for="gender"></label>
+                        <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Senior Citizen:
+                    </td>
+                    <td>
+                        <label for="SeniorCitizen"></label>
+                        <select id="SeniorCitizen" name="SeniorCitizen">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Partner:
+                    </td>
+                    <td>
+                        <label for="Partner"></label>
+                        <select id="Partner" name="Partner">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Dependents:
+                    </td>
+                    <td>
+                        <label for="Dependents"></label>
+                        <select id="Dependents" name="Dependents">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Multiple Lines:
+                    </td>
+                    <td>
+                        <label for="MultipleLines"></label>
+                        <select id="MultipleLines" name="MultipleLines">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Internet Service:
+                    </td>
+                    <td>
+                        <label for="InternetService"></label>
+                        <select id="radio" name="InternetService">
+                        <option value="Fiber optic">Fiber optic</option>
+                        <option value="DSL">DSL</option>
+                        <option value="No">No<?option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Online Security:
+                    </td>
+                    <td>
+                        <label for="OnlineSecurity"></label>
+                        <select id="OnlineSecurity" name="OnlineSecurity">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Online Backup:
+                    </td>
+                    <td>
+                        <label for="OnlineBackup"></label>
+                        <select id="OnlineBackup" name="OnlineBackup">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Device Protection:
+                    </td>
+                    <td>
+                        <label for="DeviceProtection"></label>
+                        <select id="DeviceProtection" name="DeviceProtection">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Tech Support:
+                    </td>
+                    <td>
+                        <label for="TechSupport"></label>
+                        <select id="TechSupport" name="TechSupport">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Streaming TV:
+                    </td>
+                    <td>
+                        <label for="StreamingTV"></label>
+                        <select id="StreamingTV" name="StreamingTV">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Streaming Movies:
+                    </td>
+                    <td>
+                        <label for="StreamingMovies"></label>
+                        <select id="StreamingMovies" name="StreamingMovies">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                            <option value="No internet service">No internet service</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="
+    width: 100%;
+    /* margin: 2px 76px; */
+">
+                        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:40%; margin-left: 15%" >Predict</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        {{ prediction_text }}
+
+    </div>
+</body>
+</html>
