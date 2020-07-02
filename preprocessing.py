@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OrdinalEncoder, StandardScaler, OneHotEncoder, Normalizer, scale, MinMaxScaler
+from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder, MinMaxScaler
 
 from load_data import telecom
 
@@ -36,14 +36,14 @@ cat_names = full_pipeline.named_transformers_.cat.get_feature_names(dummy)
 
 def feature_ext(sample):
     int_cols = {
-        'tenure':int,
-        'MonthlyCharges':float,
-        'TotalCharges':float
+        'tenure': int,
+        'MonthlyCharges': float,
+        'TotalCharges': float
     }
     sample.columns = telecom.columns
     sample = sample.astype(int_cols)
     testing = fitting.transform(sample)
-    testing = pd.DataFrame(testing,columns=list(num_attr)+ordinal_attr+list(cat_names))
+    testing = pd.DataFrame(testing, columns=list(num_attr)+ordinal_attr+list(cat_names))
     return testing
 
 
